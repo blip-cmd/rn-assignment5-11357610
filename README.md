@@ -83,6 +83,17 @@ Using a `ContextProvider` for managing dark theme functionality ensures consiste
 
 Icons were managed using `@expo/vector-icons` for built-in icons like home and settings icons in the tab navigator. Custom icons for transaction types were sourced and imported into the `TransactionData.js` file. All assets were organized within the project's directory structure, ensuring they are easily accessible and properly referenced in components.
 
+### Screenshots:
+
+![Screenshot 1](Wallet/assets/screenshot-light-homescreen.jpg)
+---
+![Screenshot 2](Wallet/assets/screenshot-light-settings-screen.jpg)
+---
+![Screenshot 3](Wallet\assets\screenshot-dark-home-screen.jpg)
+---
+![Screenshot 4](Wallet\assets\screenshot-dark-settings-screen.jpg)
+---
+
 ### Summary
 
 This repository leverages React Native and Expo to build a mobile app featuring tab-based navigation (`TabNavigator`) between `HomeScreen` and `SettingsScreen`. A `ThemeProvider` with a `ContextProvider` manages dark theme functionality throughout the app, enhancing my experience with the Expo Framework and practicing course content.
