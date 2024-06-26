@@ -85,5 +85,4 @@ Icons were managed using `@expo/vector-icons` for built-in icons like home and s
 
 ### Summary
 
-This project leverages React Native and Expo to build a mobile app featuring tab-based navigation (`TabNavigator`) between `HomeScreen` and `SettingsScreen`. A `ThemeProvider` with a `ContextProvider` manages dark theme functionality throughout the app, enhancing user experience and visual appeal. Custom data management (`TransactionData.js`) and styling (`StyleSheet`) techniques ensure clarity and efficiency in developing and maintaining the application.
-
+This repository leverages React Native and Expo to build a mobile app featuring tab-based navigation (`TabNavigator`) between `HomeScreen` and `SettingsScreen`. A `ThemeProvider` with a `ContextProvider` manages dark theme functionality throughout the app, enhancing my experience with the Expo Framework and practicing course content.
