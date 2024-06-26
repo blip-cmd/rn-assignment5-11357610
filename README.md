@@ -31,7 +31,7 @@ Key Components:
 
 ## How the TransactionData.js Was Built and Why?
 
-The `TransactionData.js` file was created to store mock data for transactions. This data includes the transaction id, name, category, type (positive or negative), amount, and an icon source. It is used in the `HomeScreen` component to display a list of transactions.
+The `TransactionData.js` file was created to store mock data for transactions. This data includes the transaction id, name, category, type (positive or negative), amount, and an icon source. It is used in the `HomeScreen` component to display a list of transactions with the help of a Flatlist and a map function.
 
 Key Components:
 - A list of transaction objects with relevant details.
