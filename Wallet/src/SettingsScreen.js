@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, SafeAreaView, StyleSheet, Text, Switch, TouchableOpacity } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 function SettingsScreen() {
     
@@ -11,21 +12,26 @@ function SettingsScreen() {
             <View style={styles.content}>
                 <TouchableOpacity style={styles.item}>
                     <Text style={styles.itemText}>Language</Text>
+                    <Ionicons name="chevron-forward-outline" size={21} style={{ color:'#7E848D' }} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.item}>
                     <Text style={styles.itemText}>My Profile</Text>
+                    <Ionicons name="chevron-forward-outline" size={21} style={{ color:'#7E848D' }} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.item}>
                     <Text style={styles.itemText}>Contact Us</Text>
+                    <Ionicons name="chevron-forward-outline" size={21} style={{ color:'#7E848D' }} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.item}>
                     <Text style={styles.itemText}>Change Password</Text>
+                    <Ionicons name="chevron-forward-outline" size={21} style={{ color:'#7E848D' }} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.item}>
                     <Text style={styles.itemText}>Privacy Policy</Text>
+                    <Ionicons name="chevron-forward-outline" size={21} style={{ color:'#7E848D' }} />
                 </TouchableOpacity>
-                <View style={styles.themeItem}>
-          <Text style={[styles.itemText, { fontWeight: "bold" }]}>Theme</Text>
+                <View style={styles.themeItem}> 
+          <Text style={[styles.itemText, { fontWeight: "bold", fontSize:27, margin:10 }]}>Theme</Text>
 
                     <Switch></Switch>
                      {/* toHandle Switch */}
@@ -41,24 +47,29 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
     },
     header: {
-        padding: 25,
+        paddingTop: 25,
         alignItems: "center",
+        margin: 40,
     },
     headerText: {
-        fontSize: 18,
-        fontWeight: "bold",
+        fontSize: 30,
+        // fontWeight: "bold",
 
     },
     content: {
         padding: 16,
+        
     },
     item: {
+        paddingTop: 25,
         paddingVertical: 15,
         borderBottomWidth: 1,
         borderBottomColor: "#ccc",
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
     itemText: {
-        fontSize: 16,
+        fontSize: 17.5,
     },
   themeItem: {
     paddingTop: 30,
