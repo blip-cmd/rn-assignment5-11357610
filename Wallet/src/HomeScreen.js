@@ -1,11 +1,20 @@
 import React from 'react';
-import { View, SafeAreaView, Text} from 'react-native';
-import Styles from './styles.js';
+import { View, SafeAreaView, StyleSheet, Text } from 'react-native';
 
 export default function HomeScreen() {
     return (
-        <View style={Styles.biggieBag}>
+        <SafeAreaView style={styles.biggieBag}>
             <Text>Welcome to the Homescreen</Text>
-        </View>
+        </SafeAreaView>
     );
 }
+
+const styles = StyleSheet.create({
+    biggieBag: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+});
+

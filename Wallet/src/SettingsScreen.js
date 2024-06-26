@@ -1,13 +1,21 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import Styles from './styles';
+import { View, SafeAreaView, StyleSheet, Text } from 'react-native';
 
 function SettingsScreen() {
     return (
-        <View style={Styles.biggieBag}>
+        <View style={styles.biggieBag}>
             <Text>Welcome to the Settings Screen</Text>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+  biggieBag: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center",
+  },
+});
 
 export default SettingsScreen;
