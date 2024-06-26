@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, SafeAreaView, StyleSheet, Text, Switch, TouchableOpacity } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 function SettingsScreen() {
     
