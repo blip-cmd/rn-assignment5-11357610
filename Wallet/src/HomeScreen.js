@@ -2,10 +2,13 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { transactions } from './TransactionData';
+import { useTheme } from './ThemeContext';
 
 const HomeScreen = () => {
+  const { isDarkTheme, colors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]}>
       <ScrollView style={styles.container}>
         <View style={styles.profile}>
           <View style={styles.pic}>
@@ -13,62 +16,50 @@ const HomeScreen = () => {
           </View>
           <View>
             <View style={styles.header}>
-              <Text style={styles.welcomeText}>Welcome back,</Text>
-              <Text style={styles.userName}>Ryan Brown</Text>
+              <Text style={[styles.welcomeText, { color: colors.text }]}>Welcome back,</Text>
+              <Text style={[styles.userName, { color: colors.text }]}>Ryan Brown</Text>
             </View>
           </View>
-          <TouchableOpacity style={styles.search}>
-            <Ionicons name="search" size={20} color="#000000" />
+          <TouchableOpacity style={[styles.search, { backgroundColor: colors.iconBackground }]}>
+            <Ionicons name="search" size={20} color={colors.text} />
           </TouchableOpacity>
         </View>
         <View style={styles.card}>
           <Image source={require('../assets/Card.png')} style={styles.cardImage} />
         </View>
         <View style={styles.actions}>
-          <TouchableOpacity style={styles.actionButton}>
-            <View style={styles.actionIconContainer}>
-              <Ionicons name="arrow-up-outline" size={24} color="#000000" />
-            </View>
-            <Text style={styles.actionText}>Send</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton}>
-            <View style={styles.actionIconContainer}>
-              <Ionicons name="arrow-down-outline" size={24} color="#000000" />
-            </View>
-            <Text style={styles.actionText}>Receive</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton}>
-            <View style={styles.actionIconContainer}>
-              <Ionicons name="cash-outline" size={24} color="#000000" />
-            </View>
-            <Text style={styles.actionText}>Loan</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton}>
-            <View style={styles.actionIconContainer}>
-              <Ionicons name="cloud-upload-outline" size={24} color="#000000" />
-            </View>
-            <Text style={styles.actionText}>Topup</Text>
-          </TouchableOpacity>
+          {actions.map((action, index) => (
+            <TouchableOpacity key={index} style={styles.actionButton}>
+              <View style={[styles.actionIconContainer, { backgroundColor: colors.iconBackground }]}>
+                <Ionicons name={action.icon} size={24} color={colors.text} />
+              </View>
+              <Text style={[styles.actionText, { color: colors.text }]}>{action.label}</Text>
+            </TouchableOpacity>
+          ))}
         </View>
         <View style={styles.transactions}>
           <View style={styles.transactionHeader}>
-            <Text style={styles.transactionTitle}>Transaction</Text>
+            <Text style={[styles.transactionTitle, { color: colors.text }]}>Transaction</Text>
             <Text style={styles.transactionSeeAll}>See All</Text>
           </View>
           {transactions.map(transaction => (
             <View key={transaction.id} style={styles.transactionItem}>
               <View style={styles.transactionActivity}>
-                <View style={styles.transactionIconContainer}>
-                  <Image style={styles.transactionIcon} source={transaction.icon} resizeMode='contain'/>
+                <View style={[styles.transactionIconContainer, { backgroundColor: colors.iconBackground }]}>
+                  <Image
+                    style={styles.transactionIcon}
+                    source={transaction.icon}
+                    resizeMode='contain'
+                  />
                 </View>
                 <View style={styles.transactionDetails}>
-                  <Text style={styles.transactionText}>{transaction.name}</Text>
-                  <Text style={styles.transactionCategory}>{transaction.category}</Text>
+                  <Text style={[styles.transactionText, { color: colors.text }]}>{transaction.name}</Text>
+                  <Text style={[styles.transactionCategory, { color: colors.subtext }]}>{transaction.category}</Text>
                 </View>
               </View>
               <Text style={[
                 styles.transactionAmount, 
-                transaction.type === 'negative' ? styles.negativeAmount : styles.positiveAmount
+                { color: transaction.type === 'negative' ? colors.negativeTransaction : colors.positiveTransaction }
               ]}>
                 {transaction.amount}
               </Text>
@@ -80,10 +71,16 @@ const HomeScreen = () => {
   );
 };
 
+const actions = [
+  { label: 'Send', icon: 'arrow-up-outline' },
+  { label: 'Receive', icon: 'arrow-down-outline' },
+  { label: 'Loan', icon: 'cash-outline' },
+  { label: 'Topup', icon: 'cloud-upload-outline' },
+];
+
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#ffffff',
   },
   container: {
     flex: 1,
@@ -94,12 +91,10 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontSize: 18,
-    color: '#555',
   },
   userName: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#000000',
   },
   actions: {
     flexDirection: 'row',
@@ -117,7 +112,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#000000',
   },
   transactionItem: {
     flexDirection: 'row',
@@ -149,7 +143,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   actionIconContainer: {
-    backgroundColor: '#F4F4F4',
     height: 60,
     width: 60,
     borderRadius: 25,
@@ -159,7 +152,6 @@ const styles = StyleSheet.create({
   actionText: {
     marginTop: 5,
     fontSize: 12,
-    color: '#000000',
   },
   transactionHeader: {
     flexDirection: 'row',
@@ -168,14 +160,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   transactionSeeAll: {
-    color: 'blue',
+    color: '#257CFF',
   },
   transactionActivity: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   transactionIconContainer: {
-    backgroundColor: '#F4F4F4',
     height: 45,
     width: 45,
     borderRadius: 20,
@@ -191,26 +182,17 @@ const styles = StyleSheet.create({
   },
   transactionText: {
     fontSize: 16,
-    color: '#000000',
   },
   transactionCategory: {
     fontSize: 14,
-    color: '#888888',
   },
   transactionAmount: {
     fontSize: 16,
-  },
-  negativeAmount: {
-    color: 'black',
-  },
-  positiveAmount: {
-    color: 'blue',
   },
   search: {
     marginLeft: 'auto',
     height: 40,
     width: 40,
-    backgroundColor: '#F4F4F4',
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',

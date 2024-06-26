@@ -1,54 +1,52 @@
-// import { StatusBar } from 'expo-status-bar';
-// import { Text, View } from 'react-native';
-import HomeScreen from './src/HomeScreen.js';
-import SettingsScreen from './src/SettingsScreen.js';
-import * as React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {NavigationContainer} from '@react-navigation/native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import HomeScreen from "./src/HomeScreen";
+import SettingsScreen from "./src/SettingsScreen";
+import { ThemeProvider, useTheme } from "./src/ThemeContext";
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
-  // const msg = "Welcome"
+function MyTabs() {
+  const { isDarkTheme, colors } = useTheme();
 
   return (
-    <NavigationContainer>
-    <Tab.Navigator screenOptions={{
-      tabBarShowLabel: true,
-      tabBarLabelPosition: 'below-icon',
-      tabBarStyle:{
-        backgroundColor: 'white',
-        height: 57,
-        paddingBottom: 7,
-      },
-      tabBarAvtiveTintColor: 'blue',
-      tabBarInactiveTintColor: 'grey',
-      headerShown: false,
-    }}>
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="home-outline" size={24} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Settings"
-          component={SettingsScreen}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="settings-outline" size={24} color={color} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarShowLabel: true,
+        tabBarLabelPosition: "below-icon",
+        tabBarStyle: {
+          backgroundColor: isDarkTheme ? "#000" : "white",
+          height: 57,
+          paddingBottom: 7,
+        },
+        tabBarActiveTintColor: colors.activeTintColor,
+        tabBarInactiveTintColor: colors.inactiveTintColor,
+        headerShown: false,
+        tabBarIcon: ({ color, size }) => {
+          let iconName;
+          if (route.name === "Home") {
+            iconName = "home-outline";
+          } else if (route.name === "Settings") {
+            iconName = "settings-outline";
+          }
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
   );
 }
 
-// const styles = StyleSheet.create({
-//   ,
-// });
+export default function App() {
+  return (
+    <ThemeProvider>
+      <NavigationContainer>
+        <MyTabs />
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+}
