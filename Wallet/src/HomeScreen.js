@@ -134,8 +134,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   card: {
-    marginBottom: 30,
-    marginTop: 25,
+    marginBottom: 20,
+    marginTop: 7,
   },
   cardImage: {
     width: 'auto',
@@ -162,20 +162,27 @@ const styles = StyleSheet.create({
   transactionSeeAll: {
     color: '#257CFF',
   },
-  transactionActivity: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  transactionActivity: { //Unable to fill up the row space
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 0,
+    padding: 0,
+    marginLeft: 0,
+    flex: 1,
   },
   transactionIconContainer: {
     height: 45,
-    width: 45,
+    width:45,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
   transactionIcon: {
-    height: 24,
-    width: 24,
+    height: 25,
+    width: 25,
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    
   },
   transactionDetails: {
     marginLeft: 20,
